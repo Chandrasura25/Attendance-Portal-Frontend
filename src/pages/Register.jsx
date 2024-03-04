@@ -4,7 +4,8 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 import '../styles/SignUp.css'
 const Register = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const password = useRef();
     const toggle = useRef();
     const i = useRef()
@@ -29,11 +30,14 @@ const Register = () => {
             password: "",
         },
         onSubmit: (values) => {
+            setLoading(true);
             axios.post(url, values).then((res) => {
                 seterrMessage(res.data.message)
-                navigate('/login')
+                setLoading(false);
+                navigate('/')
             }).catch((err) => {
                 console.log(err);
+                setLoading(false);
             })
         },
         validate: (values) => {
@@ -42,9 +46,6 @@ const Register = () => {
             let errors = {};
             if (values.fullname === "") {
                 errors.fullname = "This field is required"
-            }
-            else if (!regexForfullName.test(values.fullname)) {
-                errors.fullname = "fullname must be greater than five"
             }
             if (values.email === "") {
                 errors.email = "This field is required"
@@ -65,7 +66,7 @@ const Register = () => {
                     <form onSubmit={formik.handleSubmit}>
                         <div className="content">
                             {errMessage ? <p>{errMessage}</p> : null}
-                            <h1>Sign Up</h1>
+                            <h1 className="font-bold text-2xl uppercase">Sign Up</h1>
                             <div className="input-field">
                                 <input type="text" name="fullname" placeholder="Fullname" className={formik.errors.fullname && formik.touched.fullname ? 'validate is-invalid' : 'validate'} id="" onChange={formik.handleChange} value={formik.values.fullname} onBlur={formik.handleBlur} />
 
@@ -84,7 +85,9 @@ const Register = () => {
 
                                 {formik.touched.password && <span className='text-danger'>{formik.errors.password}</span>}
                             </div>
-                            <button className="second-btn" type='submit'>Sign Up</button>
+                            <button className="second-btn" type="submit" disabled={loading}>
+                                 {loading ? 'Signing up...' : 'Sign up'}
+                            </button>
                             <p>Already have an account? <Link to="/">Sign In</Link></p>
                         </div>
                     </form>
