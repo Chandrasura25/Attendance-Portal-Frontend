@@ -30,13 +30,13 @@ Before running the frontend application, ensure you have the following installed
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your/repository.git
+   git clone https://github.com/Chandrasura25/Attendance-Portal-Frontend
    ```
 
 2. Navigate to the frontend directory:
 
    ```bash
-   cd attendance-frontend
+   cd attendance-portal-frontend
    ```
 
 3. Install dependencies:
