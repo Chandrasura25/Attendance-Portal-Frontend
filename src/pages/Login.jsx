@@ -4,7 +4,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useAuth } from '../utils/AuthContext';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const { login } = useAuth();
     const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ const Login = () => {
             try {
                 setLoading(true);
                 const response = await axios.post(url, values);
-                setErrMessage(response.data.message);
+                toast(response.data.message);
                 localStorage.setItem('token', response.data.token);
                 navigate('/dashboard');
                 setLoading(false);
@@ -58,8 +59,8 @@ const Login = () => {
             <div className="popup" id="popup-1">
                 <form onSubmit={formik.handleSubmit}>
                     <div className="content">
-                        {errMessage && <p>{errMessage}</p>}
-                        <h1 className="font-bold text-2xl uppercase">Sign in</h1>
+                       <ToastContainer />
+                        <h1 className="font-bold text-2xl uppercase my-4">Sign in</h1>
                         <div className="input-field">
                             <input
                                 type="email"

@@ -2,7 +2,9 @@ import { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik'
 import axios from 'axios'
-import '../styles/SignUp.css'
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -32,7 +34,7 @@ const Register = () => {
         onSubmit: (values) => {
             setLoading(true);
             axios.post(url, values).then((res) => {
-                seterrMessage(res.data.message)
+                toast(res.data.message)
                 setLoading(false);
                 navigate('/')
             }).catch((err) => {
@@ -65,8 +67,8 @@ const Register = () => {
                 <div className="popup" id="popup-1">
                     <form onSubmit={formik.handleSubmit}>
                         <div className="content">
-                            {errMessage ? <p>{errMessage}</p> : null}
-                            <h1 className="font-bold text-2xl uppercase">Sign Up</h1>
+                            <ToastContainer />
+                            <h1 className="font-bold text-2xl uppercase my-4">Sign Up</h1>
                             <div className="input-field">
                                 <input type="text" name="fullname" placeholder="Fullname" className={formik.errors.fullname && formik.touched.fullname ? 'validate is-invalid' : 'validate'} id="" onChange={formik.handleChange} value={formik.values.fullname} onBlur={formik.handleBlur} />
 
