@@ -24,7 +24,7 @@ const Register = () => {
             toggle.current.classList.remove('hide')
         }
     }
-    const url = 'http://localhost:3000/user/register'
+    const url = 'https://attendance-portal-backend-three.vercel.app/user/register'
     const formik = useFormik({
         initialValues: {
             fullname: "",

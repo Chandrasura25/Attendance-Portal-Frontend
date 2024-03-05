@@ -66,7 +66,7 @@ function Dashboard() {
 
     const fetchAttendanceData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/user/attendance', {
+            const response = await axios.get('https://attendance-portal-backend-three.vercel.app/user/attendance', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ function Dashboard() {
 
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/user/dashboard', {
+                const response = await axios.get('https://attendance-portal-backend-three.vercel.app/user/dashboard', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ function Dashboard() {
 
     const editAttendance = async (id) => {
         try {
-            const url = `http://localhost:3000/user/attendance/${id}`;
+            const url = `https://attendance-portal-backend-three.vercel.app/user/attendance/${id}`;
             const res = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -139,7 +139,7 @@ function Dashboard() {
 
     const updateAttendance = async (id) => {
         try {
-            const url = `http://localhost:3000/user/attendance/${id}`;
+            const url = `https://attendance-portal-backend-three.vercel.app/user/attendance/${id}`;
             setLoadingBtn(true);
             const formData = {
                 status: status,
@@ -164,7 +164,7 @@ function Dashboard() {
 
     const deleteAttendance = async (id) => {
         try {
-            const url = `http://localhost:3000/user/attendance/${id}`;
+            const url = `https://attendance-portal-backend-three.vercel.app/user/attendance/${id}`;
             const res = await axios.delete(url, {
                 headers: {
                     Authorization: `Bearer ${token}`,

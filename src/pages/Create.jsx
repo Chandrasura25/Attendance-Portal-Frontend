@@ -67,7 +67,7 @@ function Create() {
 	}, []);
 
 	const submitValue = async () => {
-		const url ='http://localhost:3000/user/attendance';
+		const url ='https://attendance-portal-backend-three.vercel.app/user/attendance';
 		 const token = localStorage.getItem('token');
 		try {
 			setLoading(true);
